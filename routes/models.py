@@ -9,7 +9,7 @@ class Route(models.Model):
     name = models.CharField(max_length=128, verbose_name='Название маршрута', unique=True)
     from_city = models.CharField(max_length=128, verbose_name='Откуда')
     to_city = models.CharField(max_length=128, verbose_name='Куда')
-    cross_cities = models.ManyToManyField(Train, blank=True, verbose_name='Через города')
+    across_cities = models.ManyToManyField(Train, blank=True, verbose_name='Через города')
     travel_times = models.IntegerField(verbose_name='Время в пути')
 
     def __str__(self):

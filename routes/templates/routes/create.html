@@ -7,7 +7,13 @@
         <form action="" method="post">
             {% csrf_token %}
             <h2>Добавить маршрут:</h2>
-{#            {{ form.as_p }}#}
+            {{ form.as_p }}
+            <p>Маршрут из г.{{ from_city }} в г.{{ to_city }}, общее время в пути {{ travel_times }}</p>
+            <ul>
+                {% for d in desc %}
+                    <li>{{ d }}</li>
+                {% endfor %}
+            </ul>
             <input type="submit" value="Сохранить">
         </form>
     </div>

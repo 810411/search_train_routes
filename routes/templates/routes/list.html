@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}
+    Маршруты
+{% endblock title %}
+{% block content %}
+    <div class="row">
+        <h1>Маршруты</h1>
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th scope="row"></th>
+                    <th>Название</th>
+                    <th>Откуда</th>
+                    <th>Куда</th>
+                    <th>Время в пути</th>
+                    <th scope="row"></th>
+                    <th scope="row"></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for object in object_list %}
+                <tr>
+                    <th scope="row"></th>
+                    <td>
+                        <a href="{% url 'detail' pk=object.pk %}" class="text-dark">
+                            {{ object.name }}
+                        </a>
+                    </td>
+                    <td>
+{#                        <a href="{% url 'cities:detail' pk=object.from_city.pk %}" class="text-dark">#}
+                            {{ object.from_city }}
+{#                        </a>#}
+                    </td>
+                    <td>
+{#                        <a href="{% url 'cities:detail' pk=object.to_city.pk %}" class="text-dark">#}
+                            {{ object.to_city }}
+{#                        </a>#}
+                    </td>
+                    <td>
+                        <a href="" class="text-dark">
+                            {{ object.travel_times }}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{% url 'delete' pk=object.pk %}" class="text-black-50">
+                            Удалить
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}

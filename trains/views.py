@@ -13,7 +13,7 @@ from .models import Train
 
 def home(request):
     trains = Train.objects.all().order_by('id')
-    paginator = Paginator(trains, 4)
+    paginator = Paginator(trains, 10)
     page = request.GET.get('page')
     trains = paginator.get_page(page)
 

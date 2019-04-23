@@ -3,97 +3,101 @@
     Поезда
 {% endblock title %}
 {% block content %}
-    <h1 class="display-4">Поезда</h1>
-    <div class="row mt-3">
-        <table class="table table-sm">
-            <thead>
-                <tr>
-                    <th scope="row"></th>
-                    <th>Номер</th>
-                    <th>Откуда</th>
-                    <th>Куда</th>
-                    <th>Время в пути</th>
-                    <th scope="row"></th>
-                    <th scope="row"></th>
-                </tr>
-            </thead>
-            <tbody>
-            {% for train in trains %}
-                <tr>
-                    <th scope="row"></th>
-                    <td>
-                        <a href="{% url 'trains:detail' pk=train.pk %}" class="text-dark">
-                            {{ train.name }}
-                        </a>
-                    </td>
-                    <td>
-                        <a href="{% url 'cities:detail' pk=train.from_city.pk %}" class="text-dark">
-                            {{ train.from_city }}
-                        </a>
-                    </td>
-                    <td>
-                        <a href="{% url 'cities:detail' pk=train.to_city.pk %}" class="text-dark">
-                            {{ train.to_city }}
-                        </a>
-                    </td>
-                    <td>
-                        <a href="" class="text-dark">
-                            {{ train.travel_time }}
-                        </a>
-                    </td>
-                    <td>
-                        <a href="{% url 'trains:update' pk=train.pk %}" class="text-muted">
-                            Изменить
-                        </a>
-                    </td>
-                    <td>
-                        <a href="{% url 'trains:delete' pk=train.pk %}" class="text-black-50">
-                            Удалить
-                        </a>
-                    </td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-    </div>
-    <div class="row mt-3">
-        <nav aria-label="Page navigation example">
-            <ul class="pagination">
-                <li class="page-item {% if not trains.has_previous %}disabled{% endif %}">
-                    <a class="page-link text-dark"
-                       href="{% if trains.has_previous %}?page={{ trains.previous_page_number }}{% endif %}"
-                       aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                        <span class="sr-only">Previous</span>
+    <div class="row">
+        <div class="col-md-10 mx-auto">
+            <h1 class="display-4 text-center">Поезда</h1>
+            <div class="mt-3">
+                <table class="table table-sm">
+                    <thead>
+                    <tr>
+                        <th scope="row"></th>
+                        <th>Номер</th>
+                        <th>Откуда</th>
+                        <th>Куда</th>
+                        <th>Время в пути</th>
+                        <th scope="row"></th>
+                        <th scope="row"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for train in trains %}
+                        <tr>
+                            <th scope="row"></th>
+                            <td>
+                                <a href="{% url 'trains:detail' pk=train.pk %}" class="text-dark">
+                                    {{ train.name }}
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{% url 'cities:detail' pk=train.from_city.pk %}" class="text-dark">
+                                    {{ train.from_city }}
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{% url 'cities:detail' pk=train.to_city.pk %}" class="text-dark">
+                                    {{ train.to_city }}
+                                </a>
+                            </td>
+                            <td>
+                                <a href="" class="text-dark">
+                                    {{ train.travel_time }}
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{% url 'trains:update' pk=train.pk %}" class="text-muted">
+                                    Изменить
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{% url 'trains:delete' pk=train.pk %}" class="text-black-50">
+                                    Удалить
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="mt-3 d-flex justify-content-center">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item {% if not trains.has_previous %}disabled{% endif %}">
+                            <a class="page-link text-dark"
+                               href="{% if trains.has_previous %}?page={{ trains.previous_page_number }}{% endif %}"
+                               aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                        </li>
+                        {% for page in trains.paginator.page_range %}
+                            <li class="page-item">
+                                <a class="page-link {% if trains.number == page %}bg-dark text-white{% else %}text-dark{% endif %}"
+                                   href="?page={{ page }}">
+                                    {{ page }}
+                                    {% if trains.number == page %}
+                                        <span class="sr-only">(current)</span>
+                                    {% endif %}
+                                </a>
+                            </li>
+                        {% endfor %}
+                        <li class="page-item  {% if not trains.has_next %}disabled{% endif %}">
+                            <a class="page-link text-dark"
+                               href="{% if trains.has_next %}?page={{ trains.next_page_number }}{% endif %}"
+                               aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="mt-3 text-center">
+                <div>
+                    <a href="{% url 'trains:add' %}">
+                        <button class="btn btn-dark">Добавить поезд</button>
                     </a>
-                </li>
-                {% for page in trains.paginator.page_range %}
-                    <li class="page-item">
-                        <a class="page-link {% if trains.number == page %}bg-dark text-white{% else %}text-dark{% endif %}"
-                           href="?page={{ page }}">
-                            {{ page }}
-                            {% if trains.number == page %}
-                                <span class="sr-only">(current)</span>
-                            {% endif %}
-                        </a>
-                    </li>
-                {% endfor %}
-                <li class="page-item  {% if not trains.has_next %}disabled{% endif %}">
-                    <a class="page-link text-dark"
-                       href="{% if trains.has_next %}?page={{ trains.next_page_number }}{% endif %}"
-                       aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-    <div class="row mt-3">
-        <div>
-            <a href="{% url 'trains:add' %}">
-                <button class="btn btn-dark">Добавить поезд</button>
-            </a>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock content %}

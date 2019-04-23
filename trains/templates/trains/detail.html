@@ -3,18 +3,14 @@
     Поезд
 {% endblock title %}
 {% block content %}
-    <h1 class="display-4">Поезд</h1>
-    <div class="row">
-        <div class="col-md-6">
+    <div class="row text-center">
+        <div class="col-md-6 mx-auto">
+            <h1 class="display-4">Поезд</h1>
             <p>Название: {{ object.name }}</p>
             <p>Откуда: {{ object.from_city }}</p>
             <p>Куда: {{ object.to_city }}</p>
             <p>Время в пути: {{ object.travel_time }}</p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <a href="{% url 'trains:home' %}">К списку поездов</a>
+            <p><a href="{% url 'trains:home' %}">К списку поездов</a></p>
         </div>
     </div>
 {% endblock content %}

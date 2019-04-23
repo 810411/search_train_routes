@@ -3,15 +3,11 @@
     Город
 {% endblock title %}
 {% block content %}
-    <h1 class="display-4">Город</h1>
-    <div class="row">
-        <div class="col-md-6">
+    <div class="row text-center">
+        <div class="col-md-6 mx-auto">
+            <h1 class="display-4">Город</h1>
             <p>Название: {{ object.name }}</p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <a href="{% url 'cities:home' %}">К списку городов</a>
+            <p><a href="{% url 'cities:home' %}">К списку городов</a></p>
         </div>
     </div>
 {% endblock content %}

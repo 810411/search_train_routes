@@ -3,12 +3,14 @@
     Изменение города
 {% endblock title %}
 {% block content %}
-    <div class="row">
-        <form action="" method="post">
-            {% csrf_token %}
-            <h2>Изменить город:</h2>
-            {{ form.as_p }}
-            <input type="submit" value="Сохранить">
-        </form>
+    <div class="row text-center">
+        <div class="col-md-4 mx-auto">
+            <form action="" method="post">
+                {% csrf_token %}
+                <h3>Изменить город:</h3>
+                {{ form.as_p }}
+                <input class="btn btn-dark" type="submit" value="Сохранить">
+            </form>
+        </div>
     </div>
 {% endblock content %}

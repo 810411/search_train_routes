@@ -3,12 +3,14 @@
     Добавление поезда
 {% endblock title %}
 {% block content %}
-    <div class="row">
+    <div class="row text-center">
+        <div class="col-md-4 mx-auto">
         <form action="" method="post">
             {% csrf_token %}
-            <h2>Добавить поезд:</h2>
+            <h3>Добавить поезд:</h3>
             {{ form.as_p }}
-            <input type="submit" value="Сохранить">
+            <input class="btn btn-dark" type="submit" value="Сохранить">
         </form>
+    </div>
     </div>
 {% endblock content %}

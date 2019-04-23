@@ -3,12 +3,14 @@
     Удаление города
 {% endblock title %}
 {% block content %}
-    <div class="row">
-        <form action="" method="post">
-            {% csrf_token %}
-            <h2>Удалить город:</h2>
-            <p>Удалить {{ object }}?</p>
-            <input type="submit" value="Удалить">
-        </form>
+    <div class="row text-center">
+        <div class="col-md-4 mx-auto">
+            <form action="" method="post">
+                {% csrf_token %}
+                <h3>Удалить город:</h3>
+                <p>Удалить {{ object }}?</p>
+                <input class="btn btn-dark" type="submit" value="Удалить">
+            </form>
+        </div>
     </div>
 {% endblock content %}

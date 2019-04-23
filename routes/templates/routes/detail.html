@@ -3,24 +3,20 @@
     Маршрут
 {% endblock title %}
 {% block content %}
-    <h1 class="display-4">Маршрут</h1>
     <div class="row">
-        <div class="col-md-6">
-            <p>Название: {{ object.name }}</p>
+        <div class="col-md-6 mx-auto">
+            <h1 class="display-4 text-center">Маршрут</h1>
+            <h4 class="text-center">{{ object.name }}</h4>
             <p>Откуда: {{ object.from_city }}</p>
+            <p>Куда: {{ object.to_city }}</p>
+            <p>Время в пути: {{ object.travel_times }}</p>
             <p>Список поездов по маршруту:</p>
             <ul>
                 {% for tr in object.across_cities.all %}
                     <li>{{ tr }}</li>
                 {% endfor %}
             </ul>
-            <p>Куда: {{ object.to_city }}</p>
-            <p>Время в пути: {{ object.travel_times }}</p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <a href="{% url 'list' %}">К списку маршрутов</a>
+            <p class="text-center"><a href="{% url 'list' %}">К списку маршрутов</a></p>
         </div>
     </div>
 {% endblock content %}

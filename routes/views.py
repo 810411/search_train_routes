@@ -3,7 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.urls import reverse_lazy
-from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import DetailView, ListView, DeleteView
 
 from routes.models import Route
 from .forms import RouteForm, RouteModelForm
@@ -66,7 +66,6 @@ def find_routes(request):
 
         if form.is_valid():
             data = form.cleaned_data
-            # assert False
 
             from_city = data['from_city']
             to_city = data['to_city']
@@ -182,7 +181,7 @@ def add_route(request):
 
             messages.success(request, 'Маршрут сохранен')
 
-            return redirect('/')
+            return redirect('list')
 
     else:
         data = request.GET
@@ -207,7 +206,7 @@ def add_route(request):
             route_desc = []
 
             for tr in qs:
-                desc = f'Поезд №{tr.name} следующий из г.{tr.from_city} в г.{tr.to_city}, время в пути {tr.travel_time}'
+                desc = f'Поезд №{tr.name} следующий из г. {tr.from_city} в г. {tr.to_city}, время в пути {tr.travel_time}'
                 route_desc.append(desc)
 
             context = {
@@ -238,7 +237,6 @@ class RouteListView(ListView):
 
 class RouteDeleteView(LoginRequiredMixin, DeleteView):
     model = Route
-    template_name = 'trains/delete.html'
     success_url = reverse_lazy('home')
     login_url = 'login'
 

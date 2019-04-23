@@ -22,8 +22,8 @@ class RouteForm(forms.Form):
         required=False
     )
     traveling_time = forms.IntegerField(
-        label='Время',
-        widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Время в пути'})
+        label='Допустимое время в пути',
+        widget=forms.NumberInput(attrs={'class': 'form-control', 'value': '24'})
     )
 
 

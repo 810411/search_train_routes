@@ -5,9 +5,10 @@ from .models import City
 
 class CityForm(forms.ModelForm):
     name = forms.CharField(
-        label='Город',
+        label='',
         widget=forms.TextInput(
             attrs={
+                'class': 'form-control',
                 'placeholder': 'Название города',
             })
     )

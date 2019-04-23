@@ -1,3 +1,5 @@
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.urls import reverse_lazy
@@ -42,6 +44,8 @@ def get_graph():
 
 
 # Create your views here.
+
+@login_required(login_url='/login/')
 def home(request):
     form = RouteForm()
 
@@ -232,10 +236,11 @@ class RouteListView(ListView):
     template_name = 'routes/list.html'
 
 
-class RouteDeleteView(DeleteView):
+class RouteDeleteView(LoginRequiredMixin, DeleteView):
     model = Route
     template_name = 'trains/delete.html'
     success_url = reverse_lazy('home')
+    login_url = 'login'
 
     def get(self, request, *args, **kwargs):
         messages.success(request, 'Маршрут был удален')

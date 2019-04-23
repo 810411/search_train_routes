@@ -17,9 +17,12 @@ from django.contrib import admin
 from django.urls import path, include
 
 from routes.views import home, find_routes, add_route, RouteListView, RouteDetailView, RouteDeleteView
+from search_train_routes.views import login_view, logout_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('login/', login_view, name='login'),
+    path('logout/', logout_view, name='logout'),
     path('cities/', include(('cities.urls', 'cities'))),
     path('trains/', include(('trains.urls', 'trains'))),
     path('find/', find_routes, name='find_routes'),

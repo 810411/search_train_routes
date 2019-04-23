@@ -8,13 +8,19 @@
         <div class="col-md-6">
             <p>Название: {{ object.name }}</p>
             <p>Откуда: {{ object.from_city }}</p>
+            <p>Список поездов по маршруту:</p>
+            <ul>
+                {% for tr in object.across_cities.all %}
+                    <li>{{ tr }}</li>
+                {% endfor %}
+            </ul>
             <p>Куда: {{ object.to_city }}</p>
             <p>Время в пути: {{ object.travel_times }}</p>
         </div>
     </div>
     <div class="row">
         <div class="col-md-6">
-            <a href="{% url 'trains:home' %}">К списку поездов</a>
+            <a href="{% url 'list' %}">К списку маршрутов</a>
         </div>
     </div>
 {% endblock content %}

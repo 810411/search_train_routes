@@ -32,7 +32,7 @@ DB_HOST = os.environ.get('DB_HOST')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['https://search-train-routes.herokuapp.com/']
+ALLOWED_HOSTS = ['search-train-routes.herokuapp.com']
 
 
 # Application definition

@@ -13,3 +13,5 @@ env/
 ### Project specific ###
 settings_local.py
 local.py
+
+.coverage
